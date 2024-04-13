@@ -1,1 +1,32 @@
-spring.application.name=config-server
+server:
+  port: 8071
+spring:
+  application:
+    name: config-server
+  cloud:
+    config:
+      server:
+        git:
+          uri: "https://github.com/snckl/csn-config"
+          default-label: main
+          timeout: 5
+          clone-on-start: true
+          force-pull: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  health:
+    readiness-state:
+      enabled: true
+    liveness-state:
+      enabled: true
+  endpoint:
+    health:
+      probes:
+        enabled: true
+
+encrypt:
+  key: "1Ytxw8ie8YE3QYkebDPHO2mWjtnd1a6v"
